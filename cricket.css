@@ -1,0 +1,21 @@
+
+
+#box {
+  width:750px;
+  background-color: rgb(99, 98, 96);
+}
+
+.bat, .ball, .wicket ,.generate,.clear{
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+#display {
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 420px;
+  height:50px;
+  text-align: left;
+}

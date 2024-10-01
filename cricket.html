@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cricket Game</title>
+  <link rel="stylesheet" href="cricket.css">
+</head>
+<body>
+  <h1>Cricket Game</h1>
+  <div id="container">
+    <div id="box">
+      <button class="bat" onclick="
+       computerchoice = generateComputerChoice();
+        resultmsg = getResult('Bat', computerchoice);
+        showResult('Bat', computerchoice, resultmsg);
+      ">Bat</button>
+      <button class="ball" onclick="
+         computerchoice = generateComputerChoice();
+         resultmsg = getResult('Ball', computerchoice);
+        showResult('Ball', computerchoice, resultmsg);
+      ">Ball</button>
+      <button class="wicket" onclick="
+         computerchoice = generateComputerChoice();
+         resultmsg = getResult('Wicket', computerchoice);
+        showResult('Wicket', computerchoice, resultmsg);
+      ">Wicket</button>
+      
+      <input type="text" id="display" readonly><br>
+      
+      <button class="generate" onclick="generateGame();">Generate</button>
+
+      <button class="clear" onclick="
+        currentdisplay = '';
+        document.querySelector('#display').value = currentdisplay;
+      ">Clear</button>
+    </div>
+  </div>
+
+  <script>
+    
+    document.querySelector('#display').value = currentdisplay;
+
+    function generateComputerChoice() {
+      let randomNumber = Math.random() * 3;
+      if (randomNumber > 0 && randomNumber <= 1) {
+        return 'Bat';
+      } else if (randomNumber > 1 && randomNumber <= 2) {
+        return 'Ball';
+      } else {
+        return 'Wicket';
+      }
+    }
+
+    function generateUserChoice() {
+      let randomNumber = Math.random() * 3;
+      if (randomNumber > 0 && randomNumber <= 1) {
+        return 'Bat';
+      } else if (randomNumber > 1 && randomNumber <= 2) {
+        return 'Ball';
+      } else {
+        return 'Wicket';
+      }
+    }
+
+    function getResult(userMove, computerMove) {
+      if (userMove === 'Bat') {
+        if (computerMove === 'Ball') {
+          return 'User Won';
+        } else if (computerMove === 'Bat') {
+          return "It's a Tie";
+        } else if (computerMove === 'Wicket') {
+          return 'Computer Won';
+        }
+      } else if (userMove === 'Ball') {
+        if (computerMove === 'Ball') {
+          return "It's a Tie";
+        } else if (computerMove === 'Bat') {
+          return 'Computer Won';
+        } else if (computerMove === 'Wicket') {
+          return 'User Won';
+        }
+      } else {
+        if (computerMove === 'Wicket') {
+          return "It's a Tie";
+        } else if (computerMove === 'Bat') {
+          return 'Computer Won';
+        } else if (computerMove === 'Ball') {
+          return 'User Won';
+        }
+      }
+    }
+
+    function showResult(userMove, computerMove, result) {
+      document.querySelector('#display').value = `You have chosen ${userMove}. Computer chose ${computerMove}. ${result}`;
+      currentdisplay += `You have chosen ${userMove}. Computer chose ${computerMove}. ${result}\n`;
+    }
+
+    function generateGame() {
+      let userChoice = generateUserChoice();
+      let computerChoice = generateComputerChoice();
+      let resultMsg = getResult(userChoice, computerChoice);
+      showResult(userChoice, computerChoice, resultMsg);
+    }
+  </script>
+
+</body>
+</html>
